@@ -22,15 +22,14 @@ class Move {
     };
   }
   nextMove() {
+    console.log(this.depth);
     if (this.depth === 63) {
-      // console.log('ding');
+      console.log('ding');
       return { result: true, stack: [this.start] };
     }
     let result = false;
     for (let i = 0; i < 8; i++) {
-      let nextBoard = this.board
-        .slice(0)
-        .map(subArray => subArray.slice(0).map(el => el));
+      let nextBoard = this.board.slice(0).map(subArray => subArray.slice(0).map(el => el));
       let moveAbrv = this.moves.pop();
       let nextPosition = this.actions[moveAbrv];
       if (
@@ -65,11 +64,11 @@ class Move {
       }
     }
     if (this.moves.length === 0) {
-      console.log('out of moves');
+      // console.log('out of moves');
       // nextBoard = this.board;
       return false;
     }
-    console.log(`Results:======================= ${result}`);
+    // console.log(`Results:======================= ${result}`);
     return result;
   }
 }
@@ -91,7 +90,7 @@ class Knight {
   gallop(x, y) {
     this.board[x][y] = 0;
     let result = new Move({ x, y }, this.board, 0);
-    console.log(result);
+    // console.log(result);
     return result.nextMove();
   }
 }
